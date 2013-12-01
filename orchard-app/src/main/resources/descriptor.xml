@@ -15,7 +15,6 @@
     <content>${output}</content>
     <visible>true</visible>
     <renderMode>direct</renderMode>
-    <depthAndStencil>true</depthAndStencil>
   </initialWindow>
 
 </application>

@@ -24,6 +24,16 @@
       <artifactId>orchard-core</artifactId>
       <type>swc</type>
     </dependency>
+    <dependency>
+      <groupId>com.gamua</groupId>
+      <artifactId>starling-framework</artifactId>
+      <type>swc</type>
+    </dependency>
+    <dependency>
+      <groupId>com.feathersui</groupId>
+      <artifactId>feathers</artifactId>
+      <type>swc</type>
+    </dependency>
   </dependencies>
 
   <build>
@@ -35,6 +45,5 @@
       </plugin>
     </plugins>
   </build>
-
 
 </project>

@@ -2,16 +2,21 @@ package {
   import flash.display.Sprite;
   import flash.display.StageAlign;
   import flash.display.StageScaleMode;
+  import flash.events.Event;
+  import flash.geom.Rectangle;
 
   import mx.logging.Log;
 
-  import net.zone84.orchard.Game;
-  import net.zone84.orchard.ui.GameUI;
+
+  import net.zone84.orchard.ui.GameSprite;
 
   import org.as3commons.logging.api.LOGGER_FACTORY;
+
   import org.as3commons.logging.integration.FlexLogger;
   import org.as3commons.logging.setup.SimpleTargetSetup;
   import org.as3commons.logging.setup.target.TraceTarget;
+
+  import starling.core.Starling;
 
   use namespace LOGGER_FACTORY;
 
@@ -20,21 +25,35 @@ package {
     Log.addTarget(new FlexLogger());
   }
 
+  [SWF(width="800", height="600", frameRate="60", backgroundColor="#000000")]
   public class Main extends Sprite {
-    public function Main() {
-      super();
+    private var mStarling:Starling;
 
+    public function Main() {
+      // These settings are recommended to avoid problems with touch handling
       stage.scaleMode = StageScaleMode.NO_SCALE;
       stage.align = StageAlign.TOP_LEFT;
 
-      var game:Game = new Game();
-      game.initialize();
-      addChild(new GameUI(game));
 
-//
-//      while (game.executeTurn() == Game.GAME_CONTINUE) {
-//
-//      }
+      // Create a Starling instance that will run the "Game" class
+      mStarling = new Starling(GameSprite, stage);
+
+      stage.addEventListener(Event.RESIZE, function (e:Event):void {
+        // set rectangle dimensions for viewPort:
+        var viewPortRectangle:Rectangle = new Rectangle();
+        viewPortRectangle.width = stage.stageWidth;
+        viewPortRectangle.height = stage.stageHeight;
+
+        // resize the viewport:
+        Starling.current.viewPort = viewPortRectangle;
+
+        mStarling.stage.stageHeight = stage.stageHeight;
+        mStarling.stage.stageWidth = stage.stageWidth;
+
+
+      });
+
+      mStarling.start();
     }
   }
 }
