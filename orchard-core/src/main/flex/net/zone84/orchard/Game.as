@@ -2,6 +2,12 @@ package net.zone84.orchard {
   import mx.logging.ILogger;
   import mx.logging.Log;
 
+  /**
+   * Main game logic
+   *
+   * TODO phases: die throw, fruit pickup
+   * TODO dispatch event for failure & victory
+   */
   public class Game {
 
     private static var logger:ILogger = Log.getLogger("net.zone84.orchard.Game");
