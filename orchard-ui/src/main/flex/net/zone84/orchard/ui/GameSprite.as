@@ -17,7 +17,9 @@ package net.zone84.orchard.ui {
   import starling.events.TouchEvent;
   import starling.events.TouchPhase;
   import starling.filters.BlurFilter;
+  import starling.text.TextField;
   import starling.textures.Texture;
+  import starling.utils.Color;
 
   public class GameSprite extends Sprite {
 
@@ -89,12 +91,21 @@ package net.zone84.orchard.ui {
 
       addChild(raven);
 
-      var button:Button = new Button(pearTexture, "play");
-      button.addEventListener(Event.TRIGGERED, function (e:Event):void {
-        game.executeTurn();
+
+
+
+
+      var textfield:TextField = new TextField(128, 128, "Play", "Arial", 12, Color.AQUA);
+      textfield.border = true;
+      textfield.addEventListener(TouchEvent.TOUCH, function(e:TouchEvent):void{
+        if (e.getTouch(textfield, TouchPhase.BEGAN)) {
+          game.executeTurn();
+        }
       });
 
-      addChild(button);
+      textfield.y = 500;
+
+      addChild(textfield);
 
     }
 
