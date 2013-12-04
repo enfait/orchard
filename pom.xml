@@ -37,6 +37,29 @@
             </dependency>
           </dependencies>
         </plugin>
+        <plugin>
+          <groupId>com.yelbota.plugins</groupId>
+          <artifactId>adt-maven-plugin</artifactId>
+          <version>1.0.7</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>package</goal>
+              </goals>
+            </execution>
+          </executions>
+          <configuration>
+            <versionNumber>1</versionNumber>
+            <versionLabel>1.0</versionLabel>
+            <sdkVersion>${air.sdk.version}</sdkVersion>
+            <descriptor>${project.basedir}/src/main/resources/descriptor.xml</descriptor>
+            <applicationContent>${project.build.directory}/${project.build.finalName}.swf</applicationContent>
+            <target>apk</target>
+            <keystore>${project.basedir}/src/main/resources/sign.p12</keystore>
+            <storepass>lune</storepass>
+            <pluginHome>${adt.sdk.home}</pluginHome>
+          </configuration>
+        </plugin>
       </plugins>
     </pluginManagement>
   </build>

@@ -50,6 +50,10 @@
           <storepass>lune</storepass>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>com.yelbota.plugins</groupId>
+        <artifactId>adt-maven-plugin</artifactId>
+      </plugin>
     </plugins>
 
     <pluginManagement>
