@@ -23,7 +23,7 @@ package net.zone84.orchard.ui {
 
   public class GameSprite extends Sprite {
 
-    public var SCALE:Number = 0.4;
+    public var SCALE:Number = 0.2;
 
     [Embed(source='../../../../../resources/graphics/tree.atf', mimeType="application/octet-stream")]
     public var TreeATF:Class;
@@ -51,6 +51,11 @@ package net.zone84.orchard.ui {
 
       var game:Game = new Game();
       game.initialize();
+
+      var ravenSprite:RavenSprite = new RavenSprite(game.raven);
+      ravenSprite.scaleX = 0.5;
+      ravenSprite.scaleY = 0.5;
+      addChild(ravenSprite);
 
 
       var treeTextureData:ByteArray = new TreeATF();
@@ -80,14 +85,14 @@ package net.zone84.orchard.ui {
       for (var i:uint = 0; i < 4; i++) {
         tree = createTree(treeTexture, textures[i], trees[i]);
 
-        tree.x = i * 400;
+        tree.x = i * 200;
         addChild(tree);
       }
 
       var raven:DisplayObject = createRaven(ravenTexture, game.raven);
 
-      raven.x = 800;
-      raven.y = 600;
+      raven.x = 400;
+      raven.y = 400;
 
       addChild(raven);
 
@@ -103,7 +108,7 @@ package net.zone84.orchard.ui {
         }
       });
 
-      textfield.y = 500;
+      textfield.y = 300;
 
       addChild(textfield);
 

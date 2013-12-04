@@ -1,0 +1,11 @@
+<TextureAtlas imagePath="raven_puzzle.atf">
+ <SubTexture name="A1" x="0" y="0" width="341" height="341"/>
+ <SubTexture name="A2" x="0" y="342" width="342" height="341"/>
+ <SubTexture name="A3" x="0" y="683" width="341" height="341"/>
+ <SubTexture name="B1" x="342" y="0" width="341" height="342"/>
+ <SubTexture name="B2" x="342" y="342" width="342" height="342"/>
+ <SubTexture name="B3" x="342" y="683" width="341" height="342"/>
+ <SubTexture name="C1" x="683" y="0" width="341" height="341"/>
+ <SubTexture name="C2" x="683" y="342" width="342" height="341"/>
+ <SubTexture name="C3" x="683" y="683" width="341" height="341"/>
+</TextureAtlas>
