@@ -7,11 +7,9 @@ package {
 
   import mx.logging.Log;
 
-
-  import net.zone84.orchard.ui.GameSprite;
+  import net.zone84.orchard.ui.starling.GameSprite;
 
   import org.as3commons.logging.api.LOGGER_FACTORY;
-
   import org.as3commons.logging.integration.FlexLogger;
   import org.as3commons.logging.setup.SimpleTargetSetup;
   import org.as3commons.logging.setup.target.TraceTarget;
@@ -20,16 +18,15 @@ package {
 
   use namespace LOGGER_FACTORY;
 
-  {
-    LOGGER_FACTORY.setup = new SimpleTargetSetup(new TraceTarget());
-    Log.addTarget(new FlexLogger());
-  }
 
   [SWF(width="800", height="480", frameRate="60", backgroundColor="#000000")]
   public class Main extends Sprite {
     private var mStarling:Starling;
 
     public function Main() {
+      LOGGER_FACTORY.setup = new SimpleTargetSetup(new TraceTarget());
+      Log.addTarget(new FlexLogger());
+
       // These settings are recommended to avoid problems with touch handling
       stage.scaleMode = StageScaleMode.NO_SCALE;
       stage.align = StageAlign.TOP_LEFT;
