@@ -1,4 +1,4 @@
-package net.zone84.orchard.ui {
+package net.zone84.orchard.ui.starling {
   import com.greensock.TweenMax;
 
   import flash.utils.ByteArray;
@@ -20,10 +20,10 @@ package net.zone84.orchard.ui {
   public class RavenSprite extends Sprite {
 
     // Embed the Atlas XML
-    [Embed(source="../../../../../resources/graphics/raven_puzzle.xml", mimeType="application/octet-stream")]
+    [Embed(source="../../../../../../resources/graphics/raven_puzzle.xml", mimeType="application/octet-stream")]
     public static const AtlasXml:Class;
 
-    [Embed(source='../../../../../resources/graphics/raven_puzzle.atf', mimeType="application/octet-stream")]
+    [Embed(source='../../../../../../resources/graphics/raven_puzzle.atf', mimeType="application/octet-stream")]
     public var RavenATF:Class;
 
     public const atlasTextureNames:Array = [

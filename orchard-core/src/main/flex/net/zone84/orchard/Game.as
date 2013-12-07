@@ -1,4 +1,6 @@
 package net.zone84.orchard {
+  import flash.events.EventDispatcher;
+
   import mx.logging.ILogger;
   import mx.logging.Log;
 
@@ -8,7 +10,8 @@ package net.zone84.orchard {
    * TODO phases: die throw, fruit pickup
    * TODO dispatch event for failure & victory
    */
-  public class Game {
+  [Event(type="net.zone84.orchard.GameEvent", name="gameEnded")]
+  public class Game extends EventDispatcher {
 
     private static var logger:ILogger = Log.getLogger("net.zone84.orchard.Game");
 
@@ -66,14 +69,8 @@ package net.zone84.orchard {
 
       logger.debug("Apples: {0}, Pears: {1}, Cherries: {2}, Plums: {3}, Raven: {4}/{5}", _appleTree.fruitCount, _pearTree.fruitCount, _cherryTree.fruitCount, _plumTree.fruitCount, _raven.pieceCount, _raven.finalPieceCount)
 
-      if (_appleTree.isEmpty() && _pearTree.isEmpty() && _plumTree.isEmpty() && _cherryTree.isEmpty()) {
-        // game end: victory
-        logger.debug("Victory");
-        return GAME_VICTORY;
-      } else if (_raven.isComplete()) {
-        // game end: failure
-        logger.debug("Failure");
-        return GAME_FAILURE;
+      if (gameStatus() != GAME_CONTINUE) {
+        throw new GameError("Game ended");
       }
 
 
@@ -141,9 +138,29 @@ package net.zone84.orchard {
 
       }
 
+      var status:String = gameStatus();
+
+      if (status != GAME_CONTINUE) {
+        dispatchEvent(new GameEvent(GameEvent.GAME_ENDED));
+      }
+
+      return status;
+
+    }
+
+    public function gameStatus():String {
+
+      if (_appleTree.isEmpty() && _pearTree.isEmpty() && _plumTree.isEmpty() && _cherryTree.isEmpty()) {
+        // game end: victory
+        logger.debug("Victory");
+        return GAME_VICTORY;
+      } else if (_raven.isComplete()) {
+        // game end: failure
+        logger.debug("Failure");
+        return GAME_FAILURE;
+      }
 
       return GAME_CONTINUE;
-
     }
 
     public function pickFruitOn(tree:Tree):void {

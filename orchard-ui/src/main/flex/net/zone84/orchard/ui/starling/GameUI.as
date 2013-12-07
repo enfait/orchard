@@ -1,4 +1,4 @@
-package net.zone84.orchard.ui {
+package net.zone84.orchard.ui.starling {
   import com.bit101.components.Component;
   import com.bit101.components.HBox;
   import com.bit101.components.Label;

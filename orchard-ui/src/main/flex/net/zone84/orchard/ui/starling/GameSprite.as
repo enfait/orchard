@@ -1,4 +1,5 @@
-package net.zone84.orchard.ui {
+package net.zone84.orchard.ui.starling {
+  import net.zone84.orchard.ui.*;
   import flash.geom.Point;
   import flash.utils.ByteArray;
 
@@ -25,22 +26,22 @@ package net.zone84.orchard.ui {
 
     public var SCALE:Number = 0.2;
 
-    [Embed(source='../../../../../resources/graphics/tree.atf', mimeType="application/octet-stream")]
+    [Embed(source='../../../../../../resources/graphics/tree.atf', mimeType="application/octet-stream")]
     public var TreeATF:Class;
 
-    [Embed(source='../../../../../resources/graphics/apple.atf', mimeType="application/octet-stream")]
+    [Embed(source='../../../../../../resources/graphics/apple.atf', mimeType="application/octet-stream")]
     public var AppleATF:Class;
 
-    [Embed(source='../../../../../resources/graphics/cherry.atf', mimeType="application/octet-stream")]
+    [Embed(source='../../../../../../resources/graphics/cherry.atf', mimeType="application/octet-stream")]
     public var CherryATF:Class;
 
-    [Embed(source='../../../../../resources/graphics/pear.atf', mimeType="application/octet-stream")]
+    [Embed(source='../../../../../../resources/graphics/pear.atf', mimeType="application/octet-stream")]
     public var PearATF:Class;
 
-    [Embed(source='../../../../../resources/graphics/plum.atf', mimeType="application/octet-stream")]
+    [Embed(source='../../../../../../resources/graphics/plum.atf', mimeType="application/octet-stream")]
     public var PlumATF:Class;
 
-    [Embed(source='../../../../../resources/graphics/raven.atf', mimeType="application/octet-stream")]
+    [Embed(source='../../../../../../resources/graphics/raven.atf', mimeType="application/octet-stream")]
     public var RavenATF:Class;
 
     public function GameSprite() {
@@ -53,8 +54,11 @@ package net.zone84.orchard.ui {
       game.initialize();
 
       var ravenSprite:RavenSprite = new RavenSprite(game.raven);
-      ravenSprite.scaleX = 0.5;
-      ravenSprite.scaleY = 0.5;
+      ravenSprite.scaleX = 0.3;
+      ravenSprite.scaleY = 0.3;
+      ravenSprite.alignPivot();
+      ravenSprite.x = 400;
+      ravenSprite.y = 240;
       addChild(ravenSprite);
 
 
@@ -89,16 +93,6 @@ package net.zone84.orchard.ui {
         addChild(tree);
       }
 
-      var raven:DisplayObject = createRaven(ravenTexture, game.raven);
-
-      raven.x = 400;
-      raven.y = 400;
-
-      addChild(raven);
-
-
-
-
 
       var textfield:TextField = new TextField(128, 128, "Play", "Arial", 12, Color.AQUA);
       textfield.border = true;
@@ -107,10 +101,27 @@ package net.zone84.orchard.ui {
           game.executeTurn();
         }
       });
-
       textfield.y = 300;
 
       addChild(textfield);
+
+
+      var restartTextField:TextField = new TextField(128, 128, "Restart", "Arial", 12, Color.RED);
+      restartTextField.border = true;
+      restartTextField.addEventListener(TouchEvent.TOUCH, function(e:TouchEvent):void{
+        if (e.getTouch(restartTextField, TouchPhase.BEGAN)) {
+          //game.executeTurn();
+        }
+      });
+      restartTextField.x = 130;
+      restartTextField.y = 300;
+      restartTextField.visible = false;
+
+      game.addEventListener(GameEvent.GAME_ENDED, function(e:GameEvent):void{
+        restartTextField.visible = true;
+      });
+
+      addChild(restartTextField);
 
     }
 
